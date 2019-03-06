@@ -1,21 +1,17 @@
 # Golang-Compressor
-***
 Golang-Compressor is a lot of things. Creation a daemon for Linux machines to compress videos and upload to S3 and alter a database with the new URL.
 
 ### Built With
-***
 * [FFmpeg](https://www.ffmpeg.org/) - Converting video and audio has never been so easy.
 
 * [Amazon S3](https://aws.amazon.com/es/s3/) - Storage of objects created to store and recover any volume of data from any location.
 
 ### Prerequisites
-***
 * FFmpeg
 * Golang
 * AWS-CLI
 
 ### Installing
-***
 Follow the next stepts to install correctly.
 
 #### Golang
@@ -87,7 +83,7 @@ Default output format [None]:
 ```
 
 ### Configure
-***
+
 #### Client
 
 Copy client binary in the next path `laravel-project/public/go/client/`
@@ -133,7 +129,6 @@ cat -f /var/log/video_service.log
 INFO: 2019/03/06 14:36:30 Install comprres videos:                                    [  OK  ]
 ```
 ### Running the tests
-***
 
 ##### Invoke the daemon
 ```
@@ -180,9 +175,9 @@ INFO: 2019/03/06 14:59:11 End connection for response: 33361b3c-0d1e-44b5-93b5-0
 ```
 
 ### Author
-***
+
 * **Christian Alejandro Herrejon Villa** - *Application Developer* - [Scio](https://sciodev.com/)
 
 ### License
-***
+
 This project is licensed under the GNU License - see the LICENSE file for details
