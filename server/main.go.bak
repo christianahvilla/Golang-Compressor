@@ -1,0 +1,78 @@
+package main
+
+import ( //linux
+	"ffmpegutil"
+	"flag"
+	"log"
+	"os"
+	"syscall"
+
+	//windows
+	//"github.com/christianahvilla/ffmpegutil"
+	daemon "github.com/sevlyar/go-daemon"
+)
+
+const (
+	// name of the service
+	name        = "server-ffmpeg"
+	description = "server on go to compress files and update database"
+)
+
+var (
+	signal = flag.String("s", "", `send signal to the daemon
+		quit — graceful shutdown
+		stop — fast shutdown
+		reload — reloading the configuration file`)
+	stop = make(chan struct{})
+	done = make(chan struct{})
+)
+
+func main() {
+	ffmpegutil.Init()
+
+	flag.Parse()
+	daemon.AddCommand(daemon.StringFlag(signal, "quit"), syscall.SIGQUIT, termHandler)
+	daemon.AddCommand(daemon.StringFlag(signal, "stop"), syscall.SIGTERM, termHandler)
+	daemon.AddCommand(daemon.StringFlag(signal, "reload"), syscall.SIGHUP, reloadHandler)
+
+	cntxt := &daemon.Context{
+		PidFileName: name,
+		PidFilePerm: 0644,
+		LogFileName: ffmpegutil.NameFile,
+		LogFilePerm: 0640,
+		WorkDir:     "./",
+		Umask:       027,
+		Args:        []string{"[go-video]"},
+	}
+
+	d, err := cntxt.Reborn()
+
+	if err != nil {
+		ffmpegutil.WriteLog(ffmpegutil.Error, "Unable to run: "+err.Error())
+	}
+
+	if d != nil {
+		return
+	}
+
+	defer cntxt.Release()
+
+	ffmpegutil.WriteLog(ffmpegutil.Info, "- - - - - - - - - - - - - - -")
+	ffmpegutil.WriteLog(ffmpegutil.Info, "Daemon started")
+
+	go ffmpegutil.Server()
+}
+
+func termHandler(sig os.Signal) error {
+	log.Println("terminating...")
+	stop <- struct{}{}
+	if sig == syscall.SIGQUIT {
+		<-done
+	}
+	return daemon.ErrStop
+}
+
+func reloadHandler(sig os.Signal) error {
+	log.Println("configuration reloaded")
+	return nil
+}
