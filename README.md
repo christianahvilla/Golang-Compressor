@@ -158,7 +158,7 @@ Mar 06 21:16:49 homestead systemd[1]: Started comprres videos.
 Go to the next path `laravel-project/public/go/client/`
 
 ```
-$ ./client 33361b3c-0d1e-44b5-93b5-025214070b3b https://vis3dev.s3.amazonaws.com/77411_1551128929.mp4
+$ ./client 33361b3c-0d1e-44b5-93b5-025214070b3b https://vis3dev.s3.amazonaws.com/xxxxxxxxx.mp4
 ```
 
 ##### Watch log
@@ -172,7 +172,7 @@ INFO: 2019/03/06 14:59:07 File saved for response: 33361b3c-0d1e-44b5-93b5-02521
 INFO: 2019/03/06 14:59:07 Session opened for response: 33361b3c-0d1e-44b5-93b5-025214070b3b
 INFO: 2019/03/06 14:59:08 File uploaded for response: 33361b3c-0d1e-44b5-93b5-025214070b3b
 INFO: 2019/03/06 14:59:08 File deleted for response: 33361b3c-0d1e-44b5-93b5-025214070b3b
-INFO: 2019/03/06 14:59:08 URL https://vis3dev.s3.amazonaws.com/738406452.mp4 for response: 33361b3c-0d1e-44b5-93b5-025214070b3b
+INFO: 2019/03/06 14:59:08 URL https://vis3dev.s3.amazonaws.com/xxxxxxxxxx.mp4 for response: 33361b3c-0d1e-44b5-93b5-025214070b3b
 INFO: 2019/03/06 14:59:09 Login for response: 33361b3c-0d1e-44b5-93b5-025214070b3b
 INFO: 2019/03/06 14:59:11 Updated for response: 33361b3c-0d1e-44b5-93b5-025214070b3b
 INFO: 2019/03/06 14:59:11 Logout for response: 33361b3c-0d1e-44b5-93b5-025214070b3b
@@ -182,3 +182,7 @@ INFO: 2019/03/06 14:59:11 End connection for response: 33361b3c-0d1e-44b5-93b5-0
 ### Author
 ***
 * **Christian Alejandro Herrejon Villa** - *Application Developer* - [Scio](https://sciodev.com/)
+
+### License
+***
+This project is licensed under the GNU License - see the LICENSE file for details
